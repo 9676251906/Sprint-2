@@ -9,12 +9,14 @@ import javax.persistence.SequenceGenerator;
 public class Address 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADD_SEQ")
-	@SequenceGenerator(sequenceName = "address_seq", allocationSize = 1, name = "ADD_SEQ")
 	@Column(name="address_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "add_seq")
+	@SequenceGenerator( name = "add_seq",sequenceName = "add_seq", allocationSize = 1)
 	int addressId;
 	@Column(name="h_no")
 	String hNo;
+	@Column(name="street")
+	String street;
 	@Column(name="city")
 	String city;
 	@Column(name="state")
@@ -24,10 +26,11 @@ public class Address
 	@Column(name="zip_code")
 	int zipCode;
 	public Address() {	}
-	public Address(int addressId,String hNo, String city, String state, String country, int zipCode) 
+	public Address(int addressId,String hNo, String street, String city, String state, String country, int zipCode) 
 	{
 		this.addressId = addressId;
 		this.hNo=hNo;
+		this.street=street;
 		this.city = city;
 		this.state = state;
 		this.country = country;
@@ -44,6 +47,12 @@ public class Address
 	}
 	public void sethNo(String hNo) {
 		this.hNo = hNo;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
 	}
 	public String getCity() {
 		return city;

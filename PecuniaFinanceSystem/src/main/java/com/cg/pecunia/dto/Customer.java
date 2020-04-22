@@ -1,5 +1,4 @@
 package com.cg.pecunia.dto;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,37 +11,33 @@ import javax.persistence.SequenceGenerator;
 public class Customer 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-	@SequenceGenerator(sequenceName = "customer_seq", allocationSize = 1, name = "CUST_SEQ")
 	@Column(name="customer_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cust_seq")
+	@SequenceGenerator( name = "cust_seq",sequenceName = "cust_seq", allocationSize = 1)
 	Long customerId;
 	@Column(name="name")
 	String name;
+	@Column(name="pan")
+	String pan;
 	@OneToOne
 	@JoinColumn(name="address_id")
 	Address address;
+	@Column(name="phone")
+	Long phone;
+	@Column(name="email_id")
+	String emailId;
 	@Column(name="aadhar_no")
 	Long aadharNo;
-	@Column(name="pan")
-	String pan;
-	@Column(name="contact_no")
-	Long contactNo;
-	@Column(name="dob")
-	Date dob;
-	@Column(name="gender")
-	String gender;
 	public Customer() {  }
-	public Customer(Long customerId, String name, Address address, Long aadharNo, String pan, Long contactNo, Date dob,
-			String gender) 
+	public Customer(Long customerId, String name,  String pan, Address address,Long phone,String emailId, Long aadharNo) 
 	{
 		this.customerId = customerId;
 		this.name = name;
-		this.address = address;
-		this.aadharNo = aadharNo;
 		this.pan = pan;
-		this.contactNo = contactNo;
-		this.dob = dob;
-		this.gender = gender;
+		this.address = address;
+		this.phone=phone;
+		this.emailId=emailId;
+		this.aadharNo = aadharNo;
 	}
 	public Long getCustomerId() {
 		return customerId;
@@ -74,22 +69,16 @@ public class Customer
 	public void setPan(String pan) {
 		this.pan = pan;
 	}
-	public Long getContactNo() {
-		return contactNo;
+	public Long getPhone() {
+		return phone;
 	}
-	public void setContactNo(Long contactNo) {
-		this.contactNo = contactNo;
+	public void setPhone(Long phone) {
+		this.phone = phone;
 	}
-	public Date getDob() {
-		return dob;
+	public String getEmailId() {
+		return emailId;
 	}
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 }

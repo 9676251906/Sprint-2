@@ -1,41 +1,42 @@
 package com.cg.pecunia.dto;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 @Entity
 public class Account 
 {
 	@Id
 	@Column(name="account_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "acc_seq")
+	@SequenceGenerator(name = "acc_seq",sequenceName = "acc_seq", allocationSize = 1)
 	Long accountId;
 	@OneToOne
 	@JoinColumn(name="customer_id")
 	Customer customer;
-	@Column(name="branch_code")
-	int branchId;
+	@Column(name="opening_date")
+	LocalDate openingDate;
 	@Column(name="status")
 	String status;
 	@Column(name="type")
 	String type;
 	@Column(name="balance")
 	double balance;
-	@Column(name="no_of_trans")
-	int noOfTrans;
-	@Column(name="minimum_balance")
-	double minimumBalance;
-	public Account() { }
-	public Account(Long accountId, Customer customer, int branchId, String status, String type, double balance,int noOfTrans,double minimumBalance) 
+	public Account() {	}
+	public Account(Long accountId, Customer customer, LocalDate openingDate, String status, String type,
+			double balance) 
 	{
 		this.accountId = accountId;
 		this.customer = customer;
-		this.branchId = branchId;
+		this.openingDate = openingDate;
 		this.status = status;
 		this.type = type;
 		this.balance = balance;
-		this.noOfTrans=noOfTrans;
-		this.minimumBalance=minimumBalance;
 	}
 	public Long getAccountId() {
 		return accountId;
@@ -49,11 +50,11 @@ public class Account
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public int getBranchId() {
-		return branchId;
+	public LocalDate getOpeningDate() {
+		return openingDate;
 	}
-	public void setBranchId(int branchId) {
-		this.branchId = branchId;
+	public void setOpeningDate(LocalDate openingDate) {
+		this.openingDate = openingDate;
 	}
 	public String getStatus() {
 		return status;
@@ -73,16 +74,5 @@ public class Account
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	public int getNoOfTrans() {
-		return noOfTrans;
-	}
-	public void setNoOfTrans(int noOfTrans) {
-		this.noOfTrans = noOfTrans;
-	}
-	public double getMinimumBalance() {
-		return minimumBalance;
-	}
-	public void setMinimumBalance(double minimumBalance) {
-		this.minimumBalance = minimumBalance;
-	}
+	
 }
