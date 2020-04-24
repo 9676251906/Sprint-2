@@ -41,7 +41,6 @@ public class AccountService
 		return accountDao.findById(accountId);
 	}
 	
-	
 	@Transactional
 	public String addAccount(Account account)
 	{
