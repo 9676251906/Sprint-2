@@ -27,7 +27,7 @@ public class AccountController
 	}
 	
 	@GetMapping("/getAccount/{accountId}")
-	public ResponseEntity<Optional<Account>> getAccount(Long accountId)
+	public ResponseEntity<Optional<Account>> getAccount(@PathVariable Long accountId)
 	{
 		Optional<Account> account =  accountService.getAccount(accountId);
   	  if(account.isPresent())
